@@ -17,7 +17,41 @@ export default class Scene extends Component {
 		const characters = [];
 
 		class Character {
-			constructor() {}
+			constructor() {
+				this.width = 40;
+				this.height = 43.875;
+				this.frameX = 3;
+				this.x = Math.random() * canvas.width - this.width;
+				this.y = Math.random() * canvas.height - this.height;
+				this.speed = Math.random() * 2 + 3;
+				this.minFrame = 0;
+				this.action = characterActions[Math.floor(Math.random() * characterActions.length)];
+				if (this.action === 'up') {
+					this.frameY = 0;
+					this.minFrame = 4;
+					this.maxFrame = 15;
+				} else if (this.action === 'top right') {
+					this.frameY = 1;
+					this.minFrame = 4;
+					this.maxFrame = 14;
+				} else if (this.action === 'right') {
+					this.frameY = 3;
+					this.minFrame = 3;
+					this.maxFrame = 13;
+				} else if (this.action === 'down right') {
+					this.frameY = 4;
+					this.minFrame = 4;
+					this.maxFrame = 15;
+				} else if (this.action === 'down') {
+					this.minFrame = 0;
+					this.frameY = 6;
+					this.maxFrame = 12;
+				} else if (this.action === 'jump') {
+					this.minFrame = 0;
+					this.frameY = 7;
+					this.maxFrame = 9;
+				}
+			}
 			draw() {
 				drawSprite(
 					images.player,
