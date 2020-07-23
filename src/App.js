@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
+import Scene from './Scene';
 
 function App() {
 	return (
 		<div className="App">
-			<div className="floor"></div>
-			<canvas id="canvas"></canvas>
+			<Scene />
 		</div>
 	);
 }
