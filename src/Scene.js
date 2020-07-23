@@ -145,7 +145,7 @@ export default class Scene extends Component {
     constructor(props) {
 		super(props);
 		this.state = {
-			char: 25,
+			char: 35,
 		};
 		// this.handleChildClick = this.handleChildClick.bind(this);
 	}
@@ -153,6 +153,7 @@ export default class Scene extends Component {
 	render() {
 		return (
 			<div>
+                
 				<div className="floor"></div>
 				<canvas id="canvas"></canvas>
 			</div>
