@@ -13,7 +13,7 @@ export default class Scene extends Component {
 		images.player = new Image();
 		images.player.src = 'https://i.ibb.co/Ybk7y06/character.png';
 		const characterActions = ['up', 'top right', 'right', 'down right', 'down'];
-		const numberOfCharacters = 25;
+		const numberOfCharacters = this.state.char;
 		const characters = [];
 
 		class Character {
@@ -117,7 +117,39 @@ export default class Scene extends Component {
 				}
 			}
 		}
+
+		for (let i = 0; i < numberOfCharacters; i++) {
+			characters.push(new Character());
+		}
+
+		function drawSprite(img, sX, sY, sW, sH, dX, dY, dW, dH) {
+			ctx.drawImage(img, sX, sY, sW, sH, dX, dY, dW, dH);
+		}
+
+		function animate() {
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			for (let i = 0; i < characters.length; i++) {
+				characters[i].draw();
+				characters[i].update();
+			}
+		}
+
+		window.onload = setInterval(animate, 1000 / 20);
+
+		window.addEventListener('resize', function () {
+			canvas.height = window.innerHeight;
+			canvas.width = window.innerWidth;
+		});
+    }
+
+    constructor(props) {
+		super(props);
+		this.state = {
+			char: 25,
+		};
+		// this.handleChildClick = this.handleChildClick.bind(this);
 	}
+    
 	render() {
 		return (
 			<div>
