@@ -52,6 +52,7 @@ export default class Scene extends Component {
 					this.maxFrame = 9;
 				}
 			}
+
 			draw() {
 				drawSprite(
 					images.player,
@@ -67,6 +68,53 @@ export default class Scene extends Component {
 
 				if (this.frameX < this.maxFrame) this.frameX++;
 				else this.frameX = this.minFrame;
+			}
+
+			update() {
+				if (this.action === 'up') {
+					if (this.y < 0 - this.height * 5) {
+						this.y = canvas.height + this.height;
+						this.x = Math.random() * canvas.width;
+						this.speed = Math.random() * 2 + 3;
+					} else {
+						this.y -= this.speed;
+					}
+				} else if (this.action === 'top right') {
+					if (this.y < 0 - this.height && this.x > canvas.width + this.width) {
+						this.y = canvas.height + this.height;
+						this.x = Math.random() * canvas.width;
+						this.speed = Math.random() * 2 + 3;
+					} else {
+						this.y -= this.speed;
+						this.x += this.speed;
+					}
+				} else if (this.action === 'right') {
+					if (this.x > canvas.width + this.width * 5) {
+						this.x = 0 - this.width;
+						this.y = Math.random() * canvas.height;
+						this.speed = Math.random() * 2 + 3;
+					} else {
+						this.x += this.speed;
+					}
+				} else if (this.action === 'down right') {
+					if (this.y > canvas.height + this.height && this.x > canvas.width + this.width) {
+						this.y = 0 - this.height;
+						this.x = Math.random() * canvas.width;
+						this.speed = Math.random() * 2 + 3;
+					} else {
+						this.y += this.speed;
+						this.x += this.speed;
+					}
+				} else if (this.action === 'down') {
+					if (this.y > canvas.height + this.height * 5) {
+						this.y = 0 - this.height;
+						this.x = Math.random() * canvas.width;
+						this.speed = Math.random() * 2 + 3;
+					} else {
+						this.y += this.speed;
+					}
+				} else if (this.action === 'jump') {
+				}
 			}
 		}
 	}
